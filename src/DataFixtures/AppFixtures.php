@@ -18,6 +18,8 @@ class AppFixtures extends Fixture
    }
         public function load(ObjectManager $manager): void
         {
+
+            
             $faker = Factory::create('FR-fr');
             $users = [];
             $genres = ['male', 'female'];
@@ -39,7 +41,6 @@ class AppFixtures extends Fixture
                 $user->setPseudo('pseudo');
                 $user->setBirthAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
                 $user->setBiographie($faker->realText());
-                $user->setRoles(['ROLE_ADMIN']);
                 $user->setAvatar($picture);
                 $user->setPassword($this->hasher->hashPassword($user, 'password'));
 
