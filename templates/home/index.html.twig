@@ -3,14 +3,18 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-        {% for user in users %}
+  <div class="grid grid-cols-1 gap-4 mt-8">
+  {% for user in users %}
+    <div class="bg-white rounded-md shadow-md p-4 flex items-center gap-4">
+      <img src="{{ user.avatar }}" alt="" class="w-12 h-12 rounded-full">
+      
+      <div>
+        <h2 class="font-bold text-blue-700">{{ user.name }}</h2>
+        <p class="text-gray-500">{{ user.biographie }}</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
 
-            <div>
-                <img src="{{user.avatar}}" alt="">
-                <span>{{user.name}}</span>
-                
-                
-            </div>
-            
-        {% endfor %}
+
 {% endblock %}
