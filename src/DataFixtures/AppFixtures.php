@@ -47,6 +47,7 @@ class AppFixtures extends Fixture
                 $user->setEmail($faker->email);
                 $user->setPseudo($faker->username());
                 $user->setBirthAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
+                $user->setRoles(['ROLE_USER']);
                 $user->setBiographie($faker->realText());
                 $user->setAvatar($picture);
                 $user->setPassword($this->hasher->hashPassword($user, 'password'));
