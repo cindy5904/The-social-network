@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MemberController!{% endblock %}
+
+{% block body %}
+       {# <div class="grid grid-cols-5 gap-4 mt-9">
+        {% for user in users %}
+            <div class="rounded-md shadow-md p-4 text-center">
+              <img src="{{ user.avatar }}" alt="" class="w-32 h-32 rounded-full mx-auto mb-4">
+              <span class="block font-bold">{{ user.name }}</span>
+            </div>
+        {% endfor %}
+</div> #}
+
+  <div class="grid grid-cols-5 gap-4 mt-9">  
+ {% for user in users %}
+ <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="#">
+        <img class="rounded-t-lg w-full h-auto" src="{{ user.avatar }}" alt="photo" />
+    </a>
+    <div class="p-5">
+        <a href="#">
+            <span class="mb-2 text-sm font-bold tracking-tight text-blue-700">{{ user.name }}</span>
+            
+        </a>
+       
+        
+    </div>
+</div>
+    
+ {% endfor %}
+ </div>
+
+
+{% endblock %}

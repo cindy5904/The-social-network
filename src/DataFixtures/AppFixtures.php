@@ -33,12 +33,19 @@ class AppFixtures extends Fixture
                 $picture= 'https://randomuser.me/api/portraits/';
                 $pictureId= $faker->numberBetween(1, 99) . '.jpg';
 
-                if($genre == 'male') $picture = $picture . 'women/' . $pictureId;
-                else $picture = $picture . 'men/' . $pictureId;
+                if($genre == 'male') {
+                    $picture = $picture . 'men/' . $pictureId;
+                    $firstName = $faker->firstNameMale();
+                } else {
+                     $picture = $picture . 'women/' . $pictureId;
+                     $firstName= $faker->firstNameFemale();
+                }
 
-                $user->setName($faker->name);
+
+
+                $user->setName($firstName);
                 $user->setEmail($faker->email);
-                $user->setPseudo('pseudo');
+                $user->setPseudo($faker->username());
                 $user->setBirthAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
                 $user->setBiographie($faker->realText());
                 $user->setAvatar($picture);
