@@ -16,21 +16,27 @@
         {% endblock %}
     </head>
     <body>
-
-    <header class='bg-slate-600 text-slate-200 py-3'>
+    
+    <header class='bg-stone-300 text-stone-700 py-5'>
         <div class='max-w-5xl mx-auto'>
           <div class='flex justify-between items-center'>
-            <h1 class='text-xl font-bold'>The Social Network</h1>
-            <i class="fa fa-home"></i>
-            <a href="{{path('app_member')}}">Membres</a>
-            <nav class='flex gap-6'>
-                <a href="{{path('app_home')}}">Accueil</a>
+          {# <img src="{{ asset('assets/image/social1.png') }}" class="img" alt="un logo"> #}
+            <h1 class='text-xl font-bold font-serif text-shadow'>The Social Network</h1>
+           
+            
+            <nav class='flex gap-6 items-center justify-center'> 
+                
+                <a href="{{path('app_home')}}" i class="fa fa-home" class="font-serif focus:cursor-auto"></i>Accueil</a>
+                <div class="flex ">
+                   <img class="w-5" src="https://img.icons8.com/sf-black/64/null/crowd.png"/>
+                     <a href="{{path('app_member')}}" class="font-serif">Membres</a>
+                </div>
                 {% if app.user %}
                     <span>{{ app.user.name}}</span>
-                    <a href="">Déconnexion</a>
+                    <a href="" class="font-serif  ">Déconnexion</a>
                 {% else %}
-                    <a href="{{path('app_login')}}">Connexion</a>
-                    <a href="{{path('app_register')}}">Inscription</a>
+                    <a href="{{path('app_login')}}" class="font-serif hover:underline">Connexion</a>
+                    <a href="{{path('app_register')}}" class="font-serif hover:underline">Inscription</a>
                 {% endif %}
                 
               
@@ -40,7 +46,8 @@
     </header>
 
     <div class="max-w-5xl mx-auto">
-          {% block body %}{% endblock %}
+        
+          {% block body %}<script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>{% endblock %}
     </div>
 
    <footer class=" bg-white rounded-lg shadow m-4 dark:bg-gray-800">
@@ -55,4 +62,9 @@
             <a href="#" class="mr-4 hover:underline md:mr-6">Confidentialités</a>
         </li>
 
-   </footer>     
+   </footer>  
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    </body>
+</html>      
+
+   
