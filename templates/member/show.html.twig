@@ -2,14 +2,29 @@
 
 {% block body %}
 
-  <div class="flex mt-8">
-     <div>
+  <div class="flex mt-8 gap-10 ">
+     <div class='w-96'>
 
         <img src="{{app.user.avatar}}" class="rounded-full border-4 border-white w-full h-auto" alt="photo de l'utilisateur">
         <p class= "text-center mt-3">Bonjour {{app.user.name }},</p>
         <p class="text-center">Comment vas-tu ?</p>
    
    </div> 
+   <div>
+    <div class="grid grid-cols-1 gap-4 ">
+    {% for publication in publications|sort((a, b) => a.createdAt < b.createdAt )%}
+    <div class="bg-white rounded-md shadow-md p-4 flex items-center gap-4">
+      <img src="{{publication.user.avatar}}" alt="" class="w-12 h-12 rounded-full">
+      
+      <div>
+        <h2 class="font-bold text-stone-500">{{publication.user.name}}</h2>
+        <p class="text-gray-500">{{publication.content }}</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+   
+   </div>
     
   </div>
   

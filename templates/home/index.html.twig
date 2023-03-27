@@ -4,13 +4,13 @@
 
 {% block body %}
   <div class="grid grid-cols-1 gap-4 mt-8">
-  {% for user in users %}
+  {% for publication in publications|sort((a, b) => a.createdAt < b.createdAt ) %}
     <div class="bg-white rounded-md shadow-md p-4 flex items-center gap-4">
-      <img src="{{ user.avatar }}" alt="" class="w-12 h-12 rounded-full">
+      <img src="{{ publication.user.avatar }}" alt="" class="w-12 h-12 rounded-full">
       
       <div>
-        <h2 class="font-bold text-stone-500">{{ user.name }}</h2>
-        <p class="text-gray-500">{{ user.biographie }}</p>
+        <h2 class="font-bold text-stone-500">{{ publication.user.name }}</h2>
+        <p class="text-gray-500">{{ publication.content }}</p>
       </div>
     </div>
   {% endfor %}

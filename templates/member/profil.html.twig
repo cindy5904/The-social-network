@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Profil utilisateur{% endblock %}
+
+{% block body %}
+
+
+    <div class='flex mt-8'>
+        <div >
+          <img src="{{app.user.avatar}}" class="rounded-full border-4 border-white  h-auto" alt="photo de l'utilisateur">
+           <p class='text-bold '>{{app.user.name}}</p> 
+
+           {# <p>Né(e) le {{app.user.BirthAt}}</p> #}
+           <p>Email: {{app.user.email}}</p>
+           <p>Biographie:</p>
+           <p>{{ app.user.biographie|length > 20 ? app.user.biographie|slice(0, 50) ~ '...' : app.user.biographie }}
+</p>
+        </div>
+        {# <div>
+            <h2>Publication</h2>
+            {{form_start(form)}}
+                {{form_widget(form)}}
+
+                <button formnoValidate>Publier</button>
+            {{form_end(form)}}
+        </div>
+    </div> #}
+    <div class="grid grid-cols-2 gap-4">
+    <div>
+        
+        {{ form_start(form) }}
+        {{ form_label(form.content, null, {'attr': {'aria-label': 'Contenu'}}) }}
+        {{ form_widget(form.content, {'class': 'w-full'}) }}
+    </div>
+    <div class="flex justify-end items-end">
+        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Publier</button>
+    </div>
+</div>
+    
+{% endblock %}
