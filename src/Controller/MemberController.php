@@ -19,7 +19,14 @@ class MemberController extends AbstractController
             'users' => $users,
         ]);
     }
-
-
+    #[Route('/member/show/{id}', name: 'app_show')]
+    public function show(UserRepository $repository, $id) : Response
+    {
+        $users = $repository->find($id);
+        var_dump($users);
+        return $this->render('member/show.html.twig', [
+            'users' => $users,
+        ]);
+    }
 }  
 

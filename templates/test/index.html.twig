@@ -22,7 +22,17 @@
                     We are The Lotus Team
                   </h4>
                 </div>
-                <form>
+                <form method="post">
+                     {% if error %}
+                    <div class="bg-red-100 text-red-500 p-3 mb-3 rounded">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                    <div class="mb-3">
+                    Bienvenue {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                    {% endif %}
+
                   <p class="mb-4">Veuillez vous connecter à votre compte</p>
                   <div class="relative mb-4" data-te-input-wrapper-init>
                     <input
@@ -65,7 +75,7 @@
                       style="
                         background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
                       ">
-                      Log in
+                      Connexion
                     </button>
                     <a href="#!">Mot de passe oublié?</a>
                   </div>
