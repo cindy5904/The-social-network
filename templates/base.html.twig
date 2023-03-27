@@ -32,7 +32,7 @@
                      <a href="{{path('app_member')}}" class="font-serif">Membres</a>
                 </div>
                 {% if app.user %}
-                    <a href="{{path('app_edit')}}">{{ app.user.name}}</a>
+                    <a href="{{path('app_profil')}}">{{ app.user.name}}</a>
                     <a href="" class="font-serif  ">Déconnexion</a>
                 {% else %}
                     <a href="{{path('app_login')}}" class="font-serif hover:underline">Connexion</a>
