@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Publication;
+use App\Entity\User;
 use App\Form\PublicateType;
 use App\Repository\PublicationRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,6 +61,22 @@ class MemberController extends AbstractController
             'publication'=> $publication,
             'form'=> $form,
         ]);
+    }
+    #[Route('/member/edit', name:'app_edit')]
+    #[IsGranted('ROLE_USER')]
+    public function edit(Request $request,EntityManagerInterface $entityManager, UserRepository $repository) : Response
+    {
+        $user = $this->getUser();   
+        $form = $this->createForm(EditType::class, $user);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('')
+        }
+
     }
 }  
 

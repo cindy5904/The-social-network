@@ -4,37 +4,70 @@
 
 {% block body %}
 
+    <div class='flex mt-8 gap-8 '>    
+        <div class="ha max-w-sm rounded overflow-hidden shadow-lg bg-white w-[250px]">
+            <img class="w-full" src="{{app.user.avatar}}" alt="Sunset in the mountains">
+            <div class="px-6 py-4">
+                <div class= "ho p-2 font-bold text-xl mb-2">{{app.user.name}}</div>
+                <div class="px-3">Né(e) le </div>
+                <hr>
+                <hr>
+                <div class='p-3'><p class="text-gray-700 text-base">Email : {{app.user.email}}</p>
+</div>  
+            <hr>
+             <div class='p-3'><p>Biographie:</p></div>   
+            <div class='px-3'>
+               <p>{{ app.user.biographie|length > 20 ? app.user.biographie|slice(0, 50) ~ '...' : app.user.biographie }}</p>
 
-    <div class='flex mt-8'>
-        <div >
-          <img src="{{app.user.avatar}}" class="rounded-full border-4 border-white  h-auto" alt="photo de l'utilisateur">
-           <p class='text-bold '>{{app.user.name}}</p> 
-
-           {# <p>Né(e) le {{app.user.BirthAt}}</p> #}
-           <p>Email: {{app.user.email}}</p>
-           <p>Biographie:</p>
-           <p>{{ app.user.biographie|length > 20 ? app.user.biographie|slice(0, 50) ~ '...' : app.user.biographie }}
-</p>
-        </div>
-        {# <div>
-            <h2>Publication</h2>
-            {{form_start(form)}}
-                {{form_widget(form)}}
-
-                <button formnoValidate>Publier</button>
-            {{form_end(form)}}
-        </div>
-    </div> #}
-    <div class="grid grid-cols-2 gap-4">
-    <div>
-        
-        {{ form_start(form) }}
-        {{ form_label(form.content, null, {'attr': {'aria-label': 'Contenu'}}) }}
-        {{ form_widget(form.content, {'class': 'w-full'}) }}
-    </div>
-    <div class="flex justify-end items-end">
-        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Publier</button>
-    </div>
+            </div>
+            </div>
+           <div class="flex flex-col gap-4">
+            <button class="mx-auto w-[85px] p-2 text-sm items-center border border-transparent rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition ease-in-out duration-150">Modifier</button>
+            <button class="mb-5 mx-auto w-[100px] p-2 text-sm items-center border border-transparent  rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:shadow-outline-blue active:bg-red-800 transition ease-in-out duration-150">Déconnexion</button>
 </div>
+
+        </div>
+       
+ <div class="aie">
+  
+  <div class="flex flex-col">
+    {{ form_start(form) }}
+    <div class="relative rounded-md shadow-sm">
+      {{ form_label(form.content, null, {'attr': {'aria-label': 'Contenu'}}) }}
+
+    </div>
+        <div class='pub'>
+          {# <div>{{ form_widget(form.content, {'class': 'form-input block w-full sm:text-sm sm:leading-5 h-[52px] py-4 px-4 rounded-md resize-none'}) }} #}
+          <div>{{ form_widget(form.content,{attr:{'class': ' form-input block w-full sm:text-sm sm:leading-5 h-[44px] p-[100px] rounded-md resize-none'}}) }}
+
+           <button type="submit" class="ml-3 mt-5 items-center justify-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition ease-in-out duration-150">
+         Publier
+        </button> 
+        </div>
+    </div>
+    
+      
+    
+    {{ form_end(form) }}
+  </div>
+  <div class="grid grid-cols-1 gap-4 mt-8">
+    {% for public in app.user.publications %}
+
+     <div class="bg-white rounded-md shadow-md p-4 flex items-center gap-4">
+      <img src="{{app.user.avatar }}" alt="" class="w-12 h-12 rounded-full">
+      
+      <div>
+        <h2 class="font-bold text-stone-500">{{app.user.name}}</h2>
+        <p class="text-gray-500">{{ public.content}}</p>
+      </div>
+    </div>
+        
+    {% endfor %}
+</div>
+</div>
+</div>
+</div>
+
+
     
 {% endblock %}
