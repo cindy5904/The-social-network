@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Commentaire;
+use App\Entity\Publication;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -54,6 +56,24 @@ class AppFixtures extends Fixture
 
                 $manager->persist($user);
                 $users[] = $user;
+
+                for($l = 0; $l<5; $l++) {
+                    $publication = new Publication();
+
+                    $publication->setUser($user);
+                    $publication->setContent($faker->realText());
+                    $publication->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
+                    $manager->persist($publication);
+                }
+                for($n = 0; $n<5; $n++) {
+                    $commentaire = new Commentaire();
+
+                    $commentaire->setUser($user);
+                    $commentaire->setPublication($publication);
+                    $commentaire->setContent($faker->realText());
+                    $commentaire->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
+                    $manager->persist($commentaire);
+                }
             }
             
 
