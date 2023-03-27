@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Publication;
 use App\Entity\User;
+use App\Form\EditType;
 use App\Form\PublicateType;
 use App\Repository\PublicationRepository;
 use App\Repository\UserRepository;
@@ -74,8 +75,11 @@ class MemberController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('')
+            return $this->redirectToRoute('app_profil');
         }
+        return $this->render('member/edit.html.twig', [
+            'form' =>$form,
+        ]);
 
     }
 }  
